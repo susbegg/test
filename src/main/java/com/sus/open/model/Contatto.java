@@ -2,20 +2,34 @@ package com.sus.open.model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="contatto")
 public class Contatto implements Serializable{
 
+	
 	private static final long serialVersionUID = -3858424591169265697L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
+	@Column(name= "nome", nullable = true)
 	private String nome;
+	@Column(name= "cognome", nullable = false)
 	private String cognome;
+	@Column(name= "username", nullable = false, unique = true)
 	private String username;
-	public Contatto(String nome, String cognome, String username) {
-		super();
-		this.nome = nome;
-		this.cognome = cognome;
-		this.username = username;
+	public long getId() {
+		return id;
 	}
-	public Contatto() {
-		super();
+	public void setId(long id) {
+		this.id = id;
 	}
 	public String getNome() {
 		return nome;
@@ -35,6 +49,5 @@ public class Contatto implements Serializable{
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
 	
 }
